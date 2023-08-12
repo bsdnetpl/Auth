@@ -20,7 +20,14 @@ namespace Auth.Models
     {
         public UserValidation()
         {
-            
+            RuleFor(r => r.email)
+                .EmailAddress()
+                .NotNull()
+                .NotEmpty()
+                .WithMessage("Wronk email address");
+            RuleFor(r => r.Password)
+                .MinimumLength(8)
+                .WithMessage("Minimum lenght Password is 8 character");
         }
     }
 }

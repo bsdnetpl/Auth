@@ -1,6 +1,7 @@
 using Auth.DB;
 using Auth.Models;
 using Auth.Services;
+using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -16,6 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddDbContext<ConnectDB>(opt => opt.UseSqlServer(builder.Configuration.GetConnectionString("CS")));
 builder.Services.AddScoped<IAuthServices,AuthServices>();
+builder.Services.AddValidatorsFromAssemblyContaining<User>();
+builder.Services.AddValidatorsFromAssemblyContaining<Role>();
 
 var app = builder.Build();
 
