@@ -19,6 +19,7 @@ builder.Services.AddDbContext<ConnectDB>(opt => opt.UseSqlServer(builder.Configu
 builder.Services.AddScoped<IAuthServices,AuthServices>();
 builder.Services.AddValidatorsFromAssemblyContaining<User>();
 builder.Services.AddValidatorsFromAssemblyContaining<Role>();
+builder.Services.AddValidatorsFromAssemblyContaining<UserDto>();
 
 var app = builder.Build();
 

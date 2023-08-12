@@ -18,7 +18,6 @@ namespace Auth.DB
             .IsRequired();
 
         modelBuilder.Entity<User>()
-
             .HasIndex(e => e.email)
             .IsUnique();
 
