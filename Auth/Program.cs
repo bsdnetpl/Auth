@@ -1,4 +1,5 @@
 using Auth.DB;
+using Auth.Middleware;
 using Auth.Models;
 using Auth.Services;
 using FluentValidation;
@@ -9,6 +10,8 @@ using System;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
 
 // Add services to the container.
 
@@ -22,7 +25,7 @@ builder.Services.AddScoped<IAuthServices,AuthServices>();
 builder.Services.AddValidatorsFromAssemblyContaining<User>();
 builder.Services.AddValidatorsFromAssemblyContaining<Role>();
 builder.Services.AddValidatorsFromAssemblyContaining<UserDto>();
-
+builder.Services.AddScoped<ErrorHandlingMiddleware>();
 var AuthenticationStettings = new AuthenticationSttetings(); // jwt stettings
 builder.Configuration.GetSection("Authentication").Bind(AuthenticationStettings);
 builder.Services.AddSingleton(AuthenticationStettings);
@@ -52,7 +55,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 app.UseAuthentication();
-
+app.UseMiddleware<ErrorHandlingMiddleware>();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();

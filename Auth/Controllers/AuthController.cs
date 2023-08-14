@@ -29,14 +29,7 @@ namespace Auth.Controllers
             ValidationResult result = await _validatorRole.ValidateAsync(role);
             if (result.IsValid)
             {
-                try
-                {
-                    return Ok(await _authServices.AddRolesAsync(role));
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return Ok(await _authServices.AddRolesAsync(role));
             }
             return BadRequest(result);
         }
@@ -46,14 +39,7 @@ namespace Auth.Controllers
             ValidationResult result = await _validatorUserDto.ValidateAsync(userDto);
             if (result.IsValid)
             {
-                try
-                {
-                    return Ok(await _authServices.AddUserAsync(userDto));
-                }
-                catch (Exception ex)
-                {
-                    return StatusCode(500, ex.Message);
-                }
+                return Ok(await _authServices.AddUserAsync(userDto));
             }
             return BadRequest(result);
         }
