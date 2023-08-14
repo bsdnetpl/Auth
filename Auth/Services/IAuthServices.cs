@@ -6,5 +6,6 @@ namespace Auth.Services
     {
         Task<bool> AddRolesAsync(Role rule);
         Task<User> AddUserAsync(UserDto userDto);
+        string GenerateJwt(LoginDto loginDto);
     }
 }

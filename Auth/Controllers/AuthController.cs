@@ -57,5 +57,11 @@ namespace Auth.Controllers
             }
             return BadRequest(result);
         }
+        [HttpPost("login")]
+        public ActionResult login([FromBody] LoginDto loginDto)
+        {
+            string token = _authServices.GenerateJwt(loginDto);
+            return Ok(token);
+        }
     }
 }
