@@ -18,6 +18,7 @@ namespace Auth.Models
                 .NotNull()
                 .NotEmpty()
                 .WithMessage("Wronk email address");
+
             RuleFor(r => r.Password)
                 .MinimumLength(8)
                 .NotNull()
