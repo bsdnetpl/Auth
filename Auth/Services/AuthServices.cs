@@ -78,5 +78,9 @@ namespace Auth.Services
             var tokenHandler = new JwtSecurityTokenHandler();
             return tokenHandler.WriteToken(token);
         }
+        public async Task <List<User>> GetUserAll()
+        {
+            return  _connectDB.users.Include(i => i.role).ToList();
+        }
     }
 }

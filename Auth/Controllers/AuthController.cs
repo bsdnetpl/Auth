@@ -49,5 +49,10 @@ namespace Auth.Controllers
             string token = _authServices.GenerateJwt(loginDto);
             return Ok(token);
         }
+        [HttpGet("GetAllUsers")]
+        public ActionResult<List<User>> GetAllUsers()
+        {
+          return Ok( _authServices.GetUserAll());
+        }
     }
 }
